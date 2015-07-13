@@ -1,0 +1,68 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_FORUMBANNER_IMAGES}</h1>
+
+<p>{L_ACP_FORUMBANNER_IMAGES_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_forumbanner" method="post" action="{U_ACTION}"{S_FORM_ENCTYPE}>
+<fieldset>
+	<legend>{L_FORUMBANNER_LIST}</legend>
+
+	<table class="table1">
+		<col class="row1" ><col class="row1" >
+	<thead>
+		<tr>
+			<th>{L_FORUMBANNER}</th>
+			<th style="text-align: center; width: 5%;">{L_DELETE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<!-- IF .forumbanners -->
+			<!-- BEGIN forumbanners -->
+			<tr><td><a href="{forumbanners.FORUMBANNER_SRC}" target="_blank">{forumbanners.FORUM_NAME}</a></td><td style="text-align: center;"><input type="checkbox" class="radio" name="delete_banner[]" value="{forumbanners.FORUM_ID}" /></td></tr>
+		<!-- END forumbanners -->
+	<!-- ELSE -->
+		<tr>
+			<td class="row3" colspan="2"><strong>{L_FORUMBANNER_NONE_AVAILABLE}</strong></td>
+		</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+</fieldset>
+<fieldset>
+	<legend>{L_FORUMBANNER_UPLOAD}</legend>
+
+	<dl>
+		<dt><label for="forumbanner_forum_list">{L_FORUMBANNER_FORUM}:</label><br /><span>{L_FORUMBANNER_FORUM_EXPLAIN}</span></dt>
+		<dd>
+			<select name="forumbanner_forum_list" id="forumbanner_forum_list">
+				{S_FORUM_BOX}
+			</select>
+		</dd>
+	</dl>
+	<dl style="text-align: center;">
+		<input type="file" name="upload_banner" id="upload_banner" class="inputbox" style="width: 95%;" />
+	</dl>
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_FORUMBANNER_UPLOAD_BUTTON}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+</fieldset>
+{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->
