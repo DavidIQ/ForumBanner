@@ -119,6 +119,7 @@ class ForumBanner_module
 				
 				if (rename($file->destination_file, $new_destination_file))
 				{
+					phpbb_chmod($new_destination_file, CHMOD_READ | CHMOD_WRITE);
 					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FORUMBANNER_UPLOADED');
 					trigger_error($user->lang['FORUMBANNER_IMAGE_UPLOADED'] . adm_back_link($this->u_action));
 				}
