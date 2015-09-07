@@ -1,2 +1,2 @@
 # ForumBanner
-Extension to add a banner to individual forums
+phpBB Extension to add a banner to the top of individual forums.
