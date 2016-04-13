@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 * Forum Banner extension for the phpBB Forum Software package.
 *
