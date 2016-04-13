@@ -94,9 +94,21 @@ class ForumBanners_module
 
 			if (!empty($upload_banner['name']))
 			{
-				include($this->phpbb_root_path . 'includes/functions_upload.' . $this->php_ext);
-				$upload = new \fileupload('FORUMBANNER_', $this->allowed_extensions);
-				$file = $upload->form_upload('upload_banner');
+				$rhea = version_compare(PHPBB_VERSION, '3.2', '>=');
+				if (!$rhea)
+				{
+					global $phpbb_container;
+					$upload = $phpbb_container->get('files.factory')->get('upload')
+								->set_allowed_extensions($this->allowed_extensions)
+								->set_disallowed_content((isset($this->config['mime_triggers']) ? explode('|', $this->config['mime_triggers']) : false));
+					$file = $upload->handle_upload('files.types.form', 'upload_banner');
+				}
+				else
+				{
+					include($this->phpbb_root_path . 'includes/functions_upload.' . $this->php_ext);
+					$upload = new \fileupload('FORUMBANNER_', $this->allowed_extensions);
+					$file = $upload->form_upload('upload_banner');
+				}
 				$destination = $this->config['forum_banners_path'];
 
 				// Adjust destination path (no trailing slash)
@@ -115,9 +127,23 @@ class ForumBanners_module
 				}
 
 				$selected_forum = $this->request->variable('forumbanner_forum_list', 0);
-				$new_destination_file = $file->destination_path . '/' . $selected_forum . '.' . $file->extension;
+				$destination_path = $file_extension = $destination_file = '';
+				if ($rhea)
+				{
+					$destination_path = $file->get('destination_path');
+					$file_extension = $file->get('extension');
+					$destination_file = $file->get('destination_file');
+				}
+				else
+				{
+					$destination_path = $file->destination_path;
+					$file_extension = $file->extension;
+					$destination_file = $file->destination_file;
+				}
 				
-				if (rename($file->destination_file, $new_destination_file))
+				$new_destination_file = $destination_path . '/' . $selected_forum . '.' . $file_extension;
+				
+				if (rename($destination_file, $new_destination_file))
 				{
 					phpbb_chmod($new_destination_file, CHMOD_READ | CHMOD_WRITE);
 					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FORUMBANNER_UPLOADED');
@@ -128,6 +154,16 @@ class ForumBanners_module
 					$file->remove();
 					trigger_error($this->user->lang('FORUMBANNER_UPLOAD_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
 				}
+			}
+		}
+
+		if (!file_exists($banners_dir))
+		{
+			@mkdir($banners_dir, 0777);
+
+			if (!file_exists($banners_dir))
+			{
+				trigger_error(sprintf($this->user->lang('FORUMBANNER_DIRECTORY_NOT_EXISTS'), $banners_dir), E_USER_WARNING);
 			}
 		}
 

@@ -46,6 +46,7 @@ $lang = array_merge($lang, array(
 	'FORUMBANNER_NONE_AVAILABLE'		=> 'There are no forum banners available',
 	'FORUMBANNER_DISALLOWED_EXTENSION'	=> 'The extension of the file being uploaded is not allowed.',
 	'FORUMBANNER_UPLOAD_ERROR'			=> 'There was an error uploading your file. Please try again. Check server logs if problem persists.',
+	'FORUMBANNER_DIRECTORY_NOT_EXISTS'	=> 'The %s directory does not exist. Please create it manually.',
 
 	'FORUMBANNER_IMAGE_UPLOADED'		=> 'Forum banner image has been uploaded.',
 	'FORUMBANNER_IMAGE_DELETED'			=> 'Forum banner image has been deleted.',
