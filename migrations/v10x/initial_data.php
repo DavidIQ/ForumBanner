@@ -6,7 +6,7 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace davidiq\ForumBanner\migrations\v10x;
+namespace davidiq\ForumBanners\migrations\v10x;
 
 /**
 * Migration stage 1: Initial data changes to the database

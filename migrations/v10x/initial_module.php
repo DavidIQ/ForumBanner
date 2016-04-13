@@ -6,7 +6,7 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace davidiq\ForumBanner\migrations\v10x;
+namespace davidiq\ForumBanners\migrations\v10x;
 
 /**
 * Migration stage 3: Initial module
@@ -22,10 +22,10 @@ class initial_module extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
-			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_CAT_FORUMBANNER')),
+			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_CAT_FORUMBANNERS')),
 			array('module.add', array(
-				'acp', 'ACP_CAT_FORUMBANNER', array(
-					'module_basename'	=> '\davidiq\ForumBanner\acp\forumbanner_module',
+				'acp', 'ACP_CAT_FORUMBANNERS', array(
+					'module_basename'	=> '\davidiq\ForumBanners\acp\forumbanners_module',
 					'modes'				=> array('main'),
 				),
 			)),

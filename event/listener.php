@@ -6,7 +6,7 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace davidiq\ForumBanner\event;
+namespace davidiq\ForumBanners\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

@@ -6,21 +6,21 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace davidiq\ForumBanner\acp;
+namespace davidiq\ForumBanners\acp;
 
-class ForumBanner_info
+class ForumBanners_info
 {
 	function module()
 	{
 		return array(
-			'filename'	=> '\davidiq\ForumBanner\acp\forumbanner_module',
+			'filename'	=> '\davidiq\ForumBanners\acp\forumbanners_module',
 			'title'		=> 'ACP_FORUMBANNER_IMAGES',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
 				'main'		=> array(
 						'title' => 'ACP_FORUMBANNER_IMAGES',
-						'auth' => 'ext_davidiq/ForumBanner && acl_a_fauth',
-						'cat' 	=> array('ACP_CAT_FORUMBANNER'),
+						'auth' => 'ext_davidiq/ForumBanners && acl_a_fauth',
+						'cat' 	=> array('ACP_CAT_FORUMBANNERS'),
 				),
 			),
 		);

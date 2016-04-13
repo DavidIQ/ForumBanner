@@ -1,6 +1,6 @@
 services:
-    davidiq.ForumBanner.listener:
-        class: davidiq\ForumBanner\event\listener
+    davidiq.ForumBanners.listener:
+        class: davidiq\ForumBanners\event\listener
         arguments:
             - @config
             - @template

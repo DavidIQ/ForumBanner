@@ -37,7 +37,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// ACP Module
-	'ACP_CAT_FORUMBANNER'				=> 'Forum Banner',
+	'ACP_CAT_FORUMBANNERS'				=> 'Forum Banners',
 	'ACP_FORUMBANNER_IMAGES'			=> 'Forum Banner Images',
 
 	// ACP Logs
