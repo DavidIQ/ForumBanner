@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
 * Forum Banner extension for the phpBB Forum Software package.
 *
@@ -8,7 +8,7 @@
 
 namespace davidiq\ForumBanners\acp;
 
-class ForumBanners_module
+class forumbanners_module
 {
 	/** @var \phpbb\config\config */
 	protected $config;
