@@ -48,7 +48,7 @@ class forumbanners_module
 
 	function main($id, $mode)
 	{
-		global $user, $template, $cache, $config, $phpbb_root_path, $phpEx, $phpbb_container, $request, $db;
+		global $user, $template, $config, $phpbb_root_path, $phpEx, $phpbb_container, $request, $db;
 
 		$this->config = $config;
 		$this->phpbb_container = $phpbb_container;
@@ -86,8 +86,15 @@ class forumbanners_module
 				foreach ($delete_banners as $delete_banner)
 				{
 					$file = glob($banners_dir . '/' . $delete_banner . '.*');
-					unlink($file[0]);
-					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FORUMBANNER_DELETED');
+					$deleted = @unlink($file[0]);
+					if ($deleted)
+					{
+                  $this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FORUMBANNER_DELETED');
+               }
+					else
+               {
+                  trigger_error(sprintf($user->lang['FORUMBANNER_IMAGE_DELETE_FAIL'], $file[0]). adm_back_link($this->u_action), E_USER_WARNING);
+               }
 				}
 				trigger_error($user->lang['FORUMBANNER_IMAGE_DELETED'] . adm_back_link($this->u_action));
 			}
@@ -146,7 +153,7 @@ class forumbanners_module
 			}
 		}
 
-		$file_list = scandir($banners_dir);
+		$file_list = @scandir($banners_dir);
 
 		if (sizeof($file_list))
 		{
@@ -177,8 +184,15 @@ class forumbanners_module
 				}
 			}
 		}
+		else
+      {
+         trigger_error(sprintf($user->lang['FORUMBANNER_DIRECTORY_READ_ERROR'], $banners_dir) . adm_back_link($this->u_action), E_USER_WARNING);
+      }
 
-		include($this->phpbb_root_path . 'includes/functions_display.' . $this->php_ext);
+		if (!function_exists('make_forum_select'))
+      {
+		   include($this->phpbb_root_path . 'includes/functions_display.' . $this->php_ext);
+		}
 		$forum_box = make_forum_select(0, false, false, false, false);
 
 		$template->assign_vars(array(

@@ -30,13 +30,17 @@ class listener implements EventSubscriberInterface
 	/** @var string phpbb_root_path */
 	protected $phpbb_root_path;
 
-	/**
-	* Assign functions defined in this class to event listeners in the core
-	*
-	* @return array
-	* @static
-	* @access public
-	*/
+   /**
+    * Assign functions defined in this class to event listeners in the core
+    *
+    * @param \phpbb\config\config $config
+    * @param \phpbb\template\template $template
+    * @param \phpbb\user $user
+    * @param string $php_ext
+    * @param string $phpbb_root_path
+    * @static
+    * @access public
+    */
 	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, $php_ext, $phpbb_root_path)
 	{
 		$this->config = $config;
@@ -74,7 +78,7 @@ class listener implements EventSubscriberInterface
 
 		$file_check = glob($this->phpbb_root_path . $this->config['forum_banners_path'] . '/' . $forum_id . '.*');
 
-		if (sizeof($file_check) && getimagesize($file_check[0]))
+		if (sizeof($file_check) && @getimagesize($file_check[0]))
 		{
 			$banner_src = $file_check[0];
 		}
