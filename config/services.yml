@@ -2,10 +2,10 @@ services:
     davidiq.ForumBanners.listener:
         class: davidiq\ForumBanners\event\listener
         arguments:
-            - @config
-            - @template
-            - @user
-            - %core.php_ext%
-            - %core.root_path%
+            - '@config'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '%core.root_path%'
         tags:
             - { name: event.listener }

@@ -28,7 +28,7 @@
 	<tbody>
 	<!-- IF .forumbanners -->
 			<!-- BEGIN forumbanners -->
-			<tr><td><a href="{forumbanners.FORUMBANNER_SRC}" target="_blank">{forumbanners.FORUM_NAME}</a></td><td style="text-align: center;"><input type="checkbox" class="radio" name="delete_banner[]" value="{forumbanners.FORUM_ID}" /></td></tr>
+			<tr><td><b>{forumbanners.FORUM_NAME}</b><hr><img src="{forumbanners.FORUMBANNER_SRC}"></td><td style="text-align: center;"><input type="checkbox" class="radio" name="delete_banner[]" value="{forumbanners.FORUM_ID}" /></td></tr>
 		<!-- END forumbanners -->
 	<!-- ELSE -->
 		<tr>
@@ -38,10 +38,12 @@
 	</tbody>
 	</table>
 
+	<!-- IF .forumbanners -->
 	<p class="submit-buttons">
 		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
 	</p>
+	<!-- ENDIF -->
 </fieldset>
 <fieldset>
 	<legend>{L_FORUMBANNER_UPLOAD}</legend>

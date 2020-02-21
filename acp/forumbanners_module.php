@@ -94,21 +94,10 @@ class forumbanners_module
 
 			if (!empty($upload_banner['name']))
 			{
-				$rhea = version_compare(PHPBB_VERSION, '3.2', '>=');
-				if (!$rhea)
-				{
-					global $phpbb_container;
-					$upload = $phpbb_container->get('files.factory')->get('upload')
-								->set_allowed_extensions($this->allowed_extensions)
-								->set_disallowed_content((isset($this->config['mime_triggers']) ? explode('|', $this->config['mime_triggers']) : false));
-					$file = $upload->handle_upload('files.types.form', 'upload_banner');
-				}
-				else
-				{
-					include($this->phpbb_root_path . 'includes/functions_upload.' . $this->php_ext);
-					$upload = new \fileupload('FORUMBANNER_', $this->allowed_extensions);
-					$file = $upload->form_upload('upload_banner');
-				}
+            $upload = $phpbb_container->get('files.factory')->get('upload')
+                     ->set_allowed_extensions($this->allowed_extensions)
+                     ->set_disallowed_content((isset($this->config['mime_triggers']) ? explode('|', $this->config['mime_triggers']) : false));
+            $file = $upload->handle_upload('files.types.form', 'upload_banner');
 				$destination = $this->config['forum_banners_path'];
 
 				// Adjust destination path (no trailing slash)
@@ -127,22 +116,12 @@ class forumbanners_module
 				}
 
 				$selected_forum = $this->request->variable('forumbanner_forum_list', 0);
-				$destination_path = $file_extension = $destination_file = '';
-				if ($rhea)
-				{
-					$destination_path = $file->get('destination_path');
-					$file_extension = $file->get('extension');
-					$destination_file = $file->get('destination_file');
-				}
-				else
-				{
-					$destination_path = $file->destination_path;
-					$file_extension = $file->extension;
-					$destination_file = $file->destination_file;
-				}
-				
+            $destination_path = $file->get('destination_path');
+            $file_extension = $file->get('extension');
+            $destination_file = $file->get('destination_file');
+
 				$new_destination_file = $destination_path . '/' . $selected_forum . '.' . $file_extension;
-				
+
 				if (rename($destination_file, $new_destination_file))
 				{
 					phpbb_chmod($new_destination_file, CHMOD_READ | CHMOD_WRITE);
