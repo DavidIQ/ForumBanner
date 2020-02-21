@@ -18,7 +18,7 @@
 	<legend>{L_FORUMBANNER_LIST}</legend>
 
 	<table class="table1">
-		<col class="row1" ><col class="row1" >
+		<col class="row1"><col class="row1">
 	<thead>
 		<tr>
 			<th>{L_FORUMBANNER}</th>
@@ -28,7 +28,10 @@
 	<tbody>
 	<!-- IF .forumbanners -->
 			<!-- BEGIN forumbanners -->
-			<tr><td><b>{forumbanners.FORUM_NAME}</b><hr><img src="{forumbanners.FORUMBANNER_SRC}"></td><td style="text-align: center;"><input type="checkbox" class="radio" name="delete_banner[]" value="{forumbanners.FORUM_ID}" /></td></tr>
+			<tr>
+				<td class="row<!-- IF forumbanners.S_ROW_COUNT is odd -->3<!-- ELSE -->1<!-- ENDIF -->"><b>{forumbanners.FORUM_NAME}</b><hr><img src="{forumbanners.FORUMBANNER_SRC}"></td>
+				<td class="row<!-- IF forumbanners.S_ROW_COUNT is odd -->3<!-- ELSE -->1<!-- ENDIF -->" style="text-align: center;"><input type="checkbox" class="radio" name="delete_banner[]" value="{forumbanners.FORUM_ID}" /></td>
+			</tr>
 		<!-- END forumbanners -->
 	<!-- ELSE -->
 		<tr>
