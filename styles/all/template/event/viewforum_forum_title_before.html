@@ -1,5 +1,5 @@
-<!-- IF FORUM_BANNER_SRC -->
+{% if FORUM_BANNER_SRC %}
 <div class="forumbanner">
-	<img src="{FORUM_BANNER_SRC}" alt="{L_FORUMBANNER}" />
+	<img src="{{ FORUM_BANNER_SRC }}" alt="{{ lang('FORUMBANNER') }}" />
 </div>
-<!-- ENDIF -->
+{% endif %}
