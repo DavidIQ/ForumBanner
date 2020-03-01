@@ -21,8 +21,8 @@ class initial_data extends \phpbb\db\migration\migration
 	*/
 	public function update_data()
 	{
-		return array(
-			array('config.add', array('forum_banners_path', 'store/davidiq_ForumBanners')),
-		);
+		return [
+			['config.add', ['forum_banners_path', 'images/forums']],
+		];
 	}
 }
