@@ -129,7 +129,7 @@ class forumbanners_module
                 if (count($file->error))
                 {
                     $file->remove();
-                    trigger_error($file->error . adm_back_link($this->u_action), E_USER_WARNING);
+                    trigger_error(join(', ', $file->error) . adm_back_link($this->u_action), E_USER_WARNING);
                 }
 
                 $selected_forum = $this->request->variable('forumbanner_forum_list', 0);
